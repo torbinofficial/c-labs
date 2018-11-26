@@ -1,0 +1,9 @@
+#include <stdio.h>
+#define MAX(a,b) (a>b) ? a : b
+
+main()
+{
+  int x=0, y=0, z;
+  z = MAX(++x, y--);
+  printf("%d\n", z);
+}
