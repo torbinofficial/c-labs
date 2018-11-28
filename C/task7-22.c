@@ -2,12 +2,12 @@
 #include <stdlib.h>
 #include <math.h>
 
-double F(float x)
-{
-return (3*(x/2)*(x*x+4)-2*asinh(x/2));
-}
 
+double result(int a, int b)
+{
+  printf("%lf\n", ((sqrt(4+b*b)-sqrt(4+a*a))*(b-a)/2 + (b-a)*sqrt(4+a*a)));
+}
 main()
 {
-  printf("Result is %lf\n", (F(3)-F(0)));
+  result(0,3);
 }
