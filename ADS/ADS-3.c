@@ -141,7 +141,7 @@ void COUNTINGSORT (int*A, int N, int k)
   }
   for (j = N-1; j >=0; j--)
   {
-    B[C[A[j]]]=A[j];
+    B[C[A[j]]-1]=A[j];
     C[A[j]]--;
     ca++;
   }
