@@ -9,8 +9,11 @@ main()
 {
   linked_list group;
   int N;
-  char *ptr;
-  ptr = (char *)malloc(6);
+  group.title = (char *)malloc(6);
+  if (group.title)
+  {
+    printf("Hoorray!");
+  }
   printf("Please, enter amount or groups: \n");
   scanf("%d", &N);
   for (int i = 0;i < N; i++)
