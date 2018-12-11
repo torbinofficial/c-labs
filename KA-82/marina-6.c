@@ -10,15 +10,23 @@ int main()
     {
       words[i] = pw;
     }
+
     for (i = 0;  words[i]!=NULL; i++)
     {
-      printf("%s ", words[i]);
-      if (words[i+1]!=NULL)
+      if(strcmp(words[i], words[i+1]==0)
       {
-        if (strcmp(words[i], words[i+1])==0)
+        if (i==0)
         {
-          i++;
+          printf(" ");
         }
+        else
+        {
+          printf("");
+        }
+      }
+      else
+      {
+        printf("%s ", words[i]);
       }
     }
     printf("\n");

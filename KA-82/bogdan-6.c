@@ -2,7 +2,7 @@
 #include <string.h>
 int main()
 {
-    char sent[100], res[100], delim[]=" .,!?\n", *words[20], *pw;
+    char sent[100], delim[]=" .,!?\n", *words[20], *pw;
     int i;
     printf(" Input  a string : ");
     fgets(sent, sizeof(sent), stdin);
@@ -10,14 +10,6 @@ int main()
     {
       words[i] = pw;
     }
-    strcat(res, " ");
-    for (i = 0;  words[i]!=NULL; i++)
-    {
-      if(strlen(words[i])>3)
-      {
-        strcat(res, words[i]);
-      }
-    }
-    printf("%s\n",res);
+    printf("\n");
     return 0;
 }
