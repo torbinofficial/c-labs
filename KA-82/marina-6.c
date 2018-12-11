@@ -2,33 +2,23 @@
 #include <string.h>
 int main()
 {
-    char sent[100], delim[]=" .,!?\n", *words[20], *pw;
+    char sent[100], out[100], delim[]=" .,!?\n", *words[20], *pw, *pw1;
     int i;
-    printf(" Input  a string : ");
+    printf("Input a string:\n");
     fgets(sent, sizeof(sent), stdin);
-    for (i=0, pw = strtok(sent, delim); pw!=NULL; pw=strtok(NULL, delim), i++)
+    pw = strtok(sent, delim);
+    for (i=0;pw!=NULL; pw=strtok(NULL, delim), i++)
     {
-      words[i] = pw;
+      words[i]=pw;
     }
-
     for (i = 0;  words[i]!=NULL; i++)
     {
-      if(strcmp(words[i], words[i+1]==0)
+      if(strcmp(words[i], words[i+1])==0)
       {
-        if (i==0)
-        {
-          printf(" ");
-        }
-        else
-        {
-          printf("");
-        }
-      }
-      else
-      {
-        printf("%s ", words[i]);
+        strcat(out, words[i]);
       }
     }
-    printf("\n");
+
+    puts(out);
     return 0;
 }
