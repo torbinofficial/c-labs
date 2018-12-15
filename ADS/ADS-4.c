@@ -1,39 +1,121 @@
 #include <stdio.h>
 #include <stdlib.h>
+
 typedef struct list
 {
   int amount_of_students;
   char *title;
   struct list *next;
 } linked_list;
-linked_list *create_node(char name, int amount);
+
+linked_list *create_node();
+linked_list *delete_head(linked_list *head);
+linked_list *add_tail(linked_list *head, linked_list *newNode);
+linked_list *pop_head(linked_list *head);
+linked_list *pop_all(linked_list *head);
+void list_print(linked_list *head);
+linked_list *swap_min(linked_list *head);
+
  main()
 {
-  int N, i;
-  linked_list *ll, pw;
-  linked_list *head = malloc(sizeof(linked_list));
-  printf("Enter amount of groups\n");
-  scanf("%d\n", &N);
-  ll = calloc(N, sizeof(linked_list));
-  head = create_node('0', 0);
-  for (i = 1, ll = head; i < N;)
+  int N;
+  linked_list *head=NULL, *ll;
+  printf("Enter amounnt of groups\n");
+  scanf("%d", &N);
+  head=create_node();
+  for(int i = 1; i < N; i++)
   {
-    ll->title = (char*)malloc(6);
+    ll=create_node();
+    add_tail(head, ll);
+  }
+  list_print(head);
+  swap_min(head);
+  list_print(head);
+}
+linked_list *create_node()
+{
+  linked_list *result = (linked_list*)malloc(sizeof(linked_list));
+  if (result)
+  {
     printf("Enter name of group\n");
-    fgets(ll->title, 6, stdin);
+    result->title=malloc(6*sizeof(char));
+    scanf("%s", result->title);
+    fflush(stdin);
     printf("Enter amount of students\n");
-    scanf("%d\n", &ll->amount_of_students);
-    ll=ll->next;
+    scanf("%d", &result->amount_of_students);
+    result->next=NULL;
+    return result;
   }
-  linked_list *create_node(char name, int amount)
+}
+
+linked_list *delete_head(linked_list *head)
+{
+  linked_list *x=head->next;
+  free(head);
+  return x;
+}
+
+linked_list *add_tail(linked_list *head, linked_list *newNode)
+{
+	linked_list *x=head;
+	if (!head)
+	{
+		return newNode;
+	}
+	else
+	{
+		while (x->next) x=x->next;
+		x->next=newNode;
+		return head;
+	}
+}
+
+linked_list *pop_head(linked_list *head)
+{
+	linked_list *x=head->next;
+	free(head);
+	return x;
+}
+
+linked_list *pop_all(linked_list *head)
+{
+  while(head)
   {
-   linked_list *result;
-   result = (linked_list*)malloc(sizeof(linked_list));
-   printf("Enter name of group\n");
-   scanf("%s\n", result->title);
-   printf("Enter amount of students\n");
-   scanf("%d", &result->amount_of_students);
-   result->next=NULL;
-   return result;
+    head=pop_head(head);
   }
+}
+linked_list *swap_min(linked_list *head)
+{
+  linked_list *x=head, *min, *tail;
+  int temp, change=x->amount_of_students;
+  char *ch;
+  while (x->next)
+  {
+    x=x->next;
+    if (x->amount_of_students<change)
+    {
+      change=x->amount_of_students;
+      min=x;
+    }
+  }
+  tail=x;
+  temp=min->amount_of_students;
+  min->amount_of_students=tail->amount_of_students;
+  tail->amount_of_students=temp;
+  ch=min->title;
+  min->title=tail->title;
+  tail->title=ch;
+}
+void list_print(linked_list *head)
+{
+	linked_list *x=head;
+	if (head)
+	{
+		puts("List:");
+		do{
+			printf("%s:%d\n",x->title, x->amount_of_students);
+			x=x->next;
+		}while (x);
+	}
+	else puts("List is empty");
 }
