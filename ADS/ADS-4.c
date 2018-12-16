@@ -9,7 +9,6 @@ typedef struct list
 } linked_list;
 
 linked_list *create_node();
-linked_list *delete_head(linked_list *head);
 linked_list *add_tail(linked_list *head, linked_list *newNode);
 linked_list *pop_head(linked_list *head);
 linked_list *pop_all(linked_list *head);
@@ -22,14 +21,17 @@ linked_list *swap_min(linked_list *head);
   linked_list *head=NULL, *ll;
   printf("Enter amounnt of groups\n");
   scanf("%d", &N);
+  if (N==0)
+  {
+    puts("List is empty");
+    exit(1);
+  }
   head=create_node();
   for(int i = 1; i < N; i++)
   {
     ll=create_node();
     add_tail(head, ll);
   }
-  list_print(head);
-  swap_min(head);
   list_print(head);
 }
 linked_list *create_node()
@@ -48,25 +50,18 @@ linked_list *create_node()
   }
 }
 
-linked_list *delete_head(linked_list *head)
-{
-  linked_list *x=head->next;
-  free(head);
-  return x;
-}
-
 linked_list *add_tail(linked_list *head, linked_list *newNode)
 {
 	linked_list *x=head;
-	if (!head)
+	if (head)
 	{
-		return newNode;
+    while (x->next) x=x->next;
+    x->next=newNode;
+    return head;
 	}
 	else
 	{
-		while (x->next) x=x->next;
-		x->next=newNode;
-		return head;
+    return newNode;
 	}
 }
 
