@@ -32,6 +32,7 @@ linked_list *swap_min(linked_list *head);
     ll=create_node();
     add_tail(head, ll);
   }
+  head=pop_head(head);
   list_print(head);
 }
 linked_list *create_node()
@@ -67,9 +68,12 @@ linked_list *add_tail(linked_list *head, linked_list *newNode)
 
 linked_list *pop_head(linked_list *head)
 {
-	linked_list *x=head->next;
-	free(head);
-	return x;
+  if (head)
+  {
+  	linked_list *x=head->next;
+  	free(head);
+  	return x;
+  }
 }
 
 linked_list *pop_all(linked_list *head)
