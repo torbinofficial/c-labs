@@ -18,11 +18,13 @@ int main()
   {
     if (answ==1)
     {
-      table_print(exp_man(i), i);
+      float (*func)(int pw)=exp_man;
+      table_print(func(i), i);
     }
     else if (answ==0)
     {
-      table_print(exp(i), i);
+      double (*func)(double x)=exp;
+      table_print(func(i), i);
     }
   }
 }
