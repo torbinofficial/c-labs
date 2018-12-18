@@ -15,7 +15,7 @@ linked_list *pop_all(linked_list *head);
 void list_print(linked_list *head);
 linked_list *swap_min(linked_list *head);
 
- main()
+int main()
 {
   int N;
   linked_list *head=NULL, *ll;
@@ -32,8 +32,11 @@ linked_list *swap_min(linked_list *head);
     ll=create_node();
     add_tail(head, ll);
   }
+  list_print(head);
   head=pop_head(head);
   list_print(head);
+  head=pop_all(head);
+  return 0;
 }
 linked_list *create_node()
 {
@@ -71,8 +74,10 @@ linked_list *pop_head(linked_list *head)
   if (head)
   {
   	linked_list *x=head->next;
+    free(head->title);
   	free(head);
   	return x;
+
   }
 }
 
